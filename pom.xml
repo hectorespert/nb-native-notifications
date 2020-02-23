@@ -5,8 +5,8 @@
     <artifactId>parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>Nb native notifications</name>
-    <description>Netbeans native notifications.</description>
+    <name>Native Notifications</name>
+    <description>Netbeans native notifications parent</description>
     <url>https://github.com/blackleg/nb-native-notifications</url>
     <developers>
         <developer>
@@ -30,6 +30,7 @@
     </scm>
     <modules>
         <module>quote</module>
+        <module>core</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

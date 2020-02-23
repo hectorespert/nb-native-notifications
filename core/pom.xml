@@ -6,10 +6,10 @@
         <artifactId>parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
-    <artifactId>quote</artifactId>
+    <artifactId>core</artifactId>
     <packaging>nbm</packaging>
-    <name>Yoda Quote</name>
-    <description>Netbeans native notifications test tool</description>
+    <name>Native Notifications Core</name>
+    <description>Netbeans native notifications core</description>
     <build>
         <plugins>
             <plugin>
@@ -43,26 +43,6 @@
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-netbeans-api-annotations-common</artifactId>
-            <version>RELEASE112</version>
-        </dependency>
-        <dependency>
-            <groupId>org.netbeans.api</groupId>
-            <artifactId>org-openide-util</artifactId>
-            <version>RELEASE112</version>
-        </dependency>
-        <dependency>
-            <groupId>org.netbeans.api</groupId>
-            <artifactId>org-openide-awt</artifactId>
-            <version>RELEASE112</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.javafaker</groupId>
-            <artifactId>javafaker</artifactId>
-            <version>1.0.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.netbeans.api</groupId>
-            <artifactId>org-openide-util-ui</artifactId>
             <version>RELEASE112</version>
         </dependency>
     </dependencies>
