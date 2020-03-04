@@ -1,5 +1,0 @@
-Manifest-Version: 1.0
-OpenIDE-Module-Localizing-Bundle: es/blackleg/nb/notifications/core/Bundle.properties
-OpenIDE-Module-Requires: org.openide.windows.WindowManager
-OpenIDE-Module-Provides: org.netbeans.modules.notifications
-
