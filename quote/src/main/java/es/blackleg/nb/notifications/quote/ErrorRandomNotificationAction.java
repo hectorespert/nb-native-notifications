@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 hector.
+ * Copyright 2020 Hector Espert.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,20 +28,20 @@ import org.openide.util.ImageUtilities;
 import org.openide.util.NbBundle.Messages;
 
 @ActionID(
-        category = "Help",
-        id = "es.blackleg.nb.notifications.quote.RandomNotificationAction"
+        category = "Tools",
+        id = "es.blackleg.nb.notifications.quote.ErrorRandomNotificationAction"
 )
 @ActionRegistration(
-        displayName = "#CTL_RandomNotificationAction"
+        displayName = "#CTL_ErrorRandomNotificationAction"
 )
-@ActionReference(path = "Menu/Help", position = 1600)
-@Messages("CTL_RandomNotificationAction=Yoda quote")
-public final class RandomNotificationAction implements ActionListener {
+@ActionReference(path = "Menu/Tools/Notifications", position = 3333)
+@Messages("CTL_ErrorRandomNotificationAction=Chuck Norris fact (ERROR)")
+public final class ErrorRandomNotificationAction implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
         Faker faker = new Faker(Locale.ENGLISH);
-        Image image = ImageUtilities.loadImage("org/netbeans/modules/notifications/resources/notifications.png");
-        NotificationDisplayer.getDefault().notify("Yoda quote", ImageUtilities.image2Icon(image), faker.yoda().quote(), null);
+        Image image = ImageUtilities.loadImage("org/netbeans/modules/notifications/resources/notificationsError.png");
+        NotificationDisplayer.getDefault().notify("Chuck Norris fact", ImageUtilities.image2Icon(image), faker.chuckNorris().fact(), null, NotificationDisplayer.Priority.HIGH, NotificationDisplayer.Category.ERROR);
     }
 }
