@@ -20,6 +20,7 @@ import com.sun.jna.Pointer;
 import es.blackleg.nb.notifications.linux.jna.Libnotify;
 import java.awt.event.ActionListener;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
@@ -79,23 +80,25 @@ public class LinuxNotificationDisplayer extends NotificationDisplayer {
             libnotify.notify_notification_show(notification, null);
         }
 
-        return getDefaultNotificationDisplayer().notify(title, icon, detailsText, detailsAction, priority);
+        return getDefaultNotificationDisplayer()
+                .map(diplayer -> diplayer.notify(title, icon, detailsText, detailsAction, priority))
+                .orElseGet(() -> new EmptyNotification());
     }
 
     @Override
     public Notification notify(String title, Icon icon, JComponent balloonDetails, JComponent popupDetails, Priority priority) {
-        return getDefaultNotificationDisplayer().notify(title, icon, balloonDetails, popupDetails, priority);
+        return getDefaultNotificationDisplayer()
+                .map(diplayer -> diplayer.notify(title, icon, balloonDetails, popupDetails, priority))
+                .orElseGet(() -> new EmptyNotification());
     }
-    
-    private NotificationDisplayer getDefaultNotificationDisplayer() {
+
+    private Optional<NotificationDisplayer> getDefaultNotificationDisplayer() {
         return Lookup.getDefault()
                 .lookupAll(NotificationDisplayer.class)
                 .stream()
                 .filter((notificationDisplayer) -> !LinuxNotificationDisplayer.class.isInstance(notificationDisplayer))
                 .map(NotificationDisplayer.class::cast)
-                .findAny()
-                .orElseThrow(() -> new RuntimeException("Default NotificationDisplayer implementation not available"));
+                .findAny();
     }
-
 
 }
