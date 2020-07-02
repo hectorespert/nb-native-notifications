@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>es.blackleg.nb.notifications</groupId>
     <artifactId>parent</artifactId>
-    <version>1.1.1-SNAPSHOT</version>
+    <version>1.2.0</version>
     <packaging>pom</packaging>
     <name>Native Notifications</name>
     <description>Netbeans native notifications parent</description>
@@ -26,7 +26,7 @@
         <connection>scm:git:git@github.com:blackleg/nb-native-notifications.git</connection>
         <developerConnection>scm:git:git@github.com:blackleg/nb-native-notifications.git</developerConnection>
         <url>https://github.com/blackleg/nb-native-notifications</url>
-        <tag>HEAD</tag>
+        <tag>parent-1.2.0</tag>
     </scm>
     <modules>
         <module>quote</module>
