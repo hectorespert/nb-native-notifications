@@ -30,10 +30,11 @@
     </scm>
     <modules>
         <module>quote</module>
+        <module>linux</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <netbens.release>RELEASE110</netbens.release>
+        <netbens.release>RELEASE120-1</netbens.release>
     </properties>
     <distributionManagement>
         <snapshotRepository>

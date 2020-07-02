@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+OpenIDE-Module-Localizing-Bundle: es/blackleg/nb/notifications/linux/Bundle.properties
+OpenIDE-Module-Display-Category: Notifications
+OpenIDE-Module-Requires: org.openide.modules.os.Linux
