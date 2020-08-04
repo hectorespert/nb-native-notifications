@@ -16,44 +16,39 @@
 package es.blackleg.nb.notifications.linux;
 
 import javax.swing.JComponent;
-import org.junit.jupiter.api.AfterEach;
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.EnabledOnOs;
-import org.junit.jupiter.api.condition.OS;
+import org.netbeans.junit.NbTestCase;
 import org.openide.awt.Notification;
 
 /**
  *
  * @author Hector Espert
  */
-@EnabledOnOs({OS.LINUX})
-public class LinuxNotificationDisplayerTest {
+public class LinuxNotificationDisplayerTest extends NbTestCase {
     
     private LinuxNotificationDisplayer notificationDisplayer;
 
+    public LinuxNotificationDisplayerTest(String name) {
+        super(name);
+    }
 
-    @BeforeEach
+    @Override
     public void setUp() {
         notificationDisplayer = new LinuxNotificationDisplayer();
         notificationDisplayer.start();
         
     }
 
-    @AfterEach
+    @Override
     public void tearDown() {
         notificationDisplayer.stop();
     }
 
-    @Test
     public void testNotify() {
         Notification notification = notificationDisplayer.notify("title", null, "details", null, null);
         assertNotNull(notification);
         assertEquals(EmptyNotification.class, notification.getClass());
     }
 
-    @Test
     public void testNotifyWithJComponents() {
         Notification notification = notificationDisplayer.notify("title", null, (JComponent) null, (JComponent) null, null);
         assertNotNull(notification);
