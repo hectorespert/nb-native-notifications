@@ -57,20 +57,6 @@
             </activation>
         </profile>
         <profile>
-            <id>ci</id>
-            <build>
-                <plugins>
-                <plugin>
-                    <groupId>org.sonarsource.scanner.maven</groupId>
-                    <artifactId>sonar-maven-plugin</artifactId>
-                    <configuration>
-                        <goalPrefix>sonar</goalPrefix>
-                    </configuration>
-                </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
             <id>release</id>
             <build>
                 <plugins>
