@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>es.blackleg.nb.notifications</groupId>
     <artifactId>parent</artifactId>
-    <version>1.2.1-SNAPSHOT</version>
+    <version>1.2.2-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Native Notifications</name>
     <description>Netbeans native notifications parent</description>
@@ -34,7 +34,7 @@
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <netbens.release>RELEASE120-1</netbens.release>
+        <netbens.release>RELEASE123</netbens.release>
     </properties>
     <distributionManagement>
         <snapshotRepository>
