@@ -10,6 +10,7 @@
     <packaging>nbm</packaging>
     <name>Linux notifications</name>
     <description>Simple linux notifications integration</description>
+    <url>https://github.com/blackleg/nb-native-notifications</url>
     <build>
         <plugins>
             <plugin>

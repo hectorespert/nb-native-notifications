@@ -10,6 +10,7 @@
     <packaging>nbm</packaging>
     <name>Yoda Quote</name>
     <description>Random Netbeans notification generator</description>
+    <url>https://github.com/blackleg/nb-native-notifications</url>
     <build>
         <plugins>
             <plugin>

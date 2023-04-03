@@ -21,13 +21,13 @@
         </activatedProfiles>
     </action>
     <action>
-            <actionName>CUSTOM-Release Perform</actionName>
-            <displayName>Release Perform</displayName>
-            <goals>
-                <goal>release:perform</goal>
-            </goals>
-            <activatedProfiles>
-                <activatedProfile>release</activatedProfile>
-            </activatedProfiles>
-        </action>
+        <actionName>CUSTOM-Release Perform</actionName>
+        <displayName>Release Perform</displayName>
+        <goals>
+            <goal>release:perform</goal>
+        </goals>
+        <activatedProfiles>
+            <activatedProfile>release</activatedProfile>
+        </activatedProfiles>
+    </action>
 </actions>
