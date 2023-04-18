@@ -18,6 +18,11 @@
                 <artifactId>nbm-maven-plugin</artifactId>
                 <version>4.5</version>
                 <extensions>true</extensions>
+                <configuration>
+                    <keystore>${project.parent.basedir}/.keystore</keystore>
+                    <keystorealias>plugins</keystorealias>
+                    <keystorepassword>${netbeans.plugins.keystorepassword}</keystorepassword>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
