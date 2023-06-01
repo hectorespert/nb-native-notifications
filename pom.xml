@@ -34,7 +34,7 @@
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <netbens.release>RELEASE170</netbens.release>
+        <netbens.release>RELEASE180</netbens.release>
     </properties>
     <distributionManagement>
         <snapshotRepository>
