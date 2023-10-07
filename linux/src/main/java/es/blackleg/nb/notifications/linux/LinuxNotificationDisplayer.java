@@ -15,9 +15,11 @@
  */
 package es.blackleg.nb.notifications.linux;
 
-import com.sun.jna.Native;
-import com.sun.jna.Pointer;
-import es.blackleg.nb.notifications.linux.jna.Libnotify;
+import es.blackleg.jlibnotify.JLibnotify;
+import es.blackleg.jlibnotify.JLibnotifyNotification;
+import es.blackleg.jlibnotify.core.DefaultJLibnotifyLoader;
+import es.blackleg.jlibnotify.exception.JLibnotifyInitException;
+import es.blackleg.jlibnotify.exception.JLibnotifyLoadException;
 import java.awt.event.ActionListener;
 import java.util.Objects;
 import java.util.Optional;
@@ -43,14 +45,14 @@ public class LinuxNotificationDisplayer extends NotificationDisplayer {
 
     private static final String APP_NAME = "netbeans";
 
-    private Libnotify libnotify;
+    private JLibnotify libnotify;
 
     public LinuxNotificationDisplayer() {
         try {
-            this.libnotify = Native.load(LIBNOTIFY, Libnotify.class);
+            this.libnotify = DefaultJLibnotifyLoader.init().load();
             LOG.log(Level.FINE, "Libnotify library loaded");
-        } catch (UnsatisfiedLinkError unsatisfiedLinkError) {
-            LOG.log(Level.WARNING, "Libnotify library not found", unsatisfiedLinkError);
+        } catch (JLibnotifyLoadException exception) {
+            LOG.log(Level.WARNING, "Libnotify library not found", exception);
         }
     }
 
@@ -59,25 +61,40 @@ public class LinuxNotificationDisplayer extends NotificationDisplayer {
     }
 
     public void start() {
-        if (isLoaded() && !libnotify.notify_is_initted() && libnotify.notify_init(APP_NAME)) {
+        if (!isLoaded()) {
+            return;
+        }
+        
+        if (libnotify.isInitted()) {
+            return;
+        }
+        
+        try {
+            libnotify.init(APP_NAME);
             LOG.log(Level.FINE, "Libnotify initted");
-        } else {
+        } catch(JLibnotifyInitException e) {
             LOG.log(Level.WARNING, "Unable to start libnotify");
         }
     }
 
     public void stop() {
-        if (isLoaded() && libnotify.notify_is_initted()) {
-            libnotify.notify_uninit();
-            LOG.log(Level.FINE, "Libnotify uninit");
+        if (!isLoaded()) {
+            return;
         }
+        
+        if (!libnotify.isInitted()) {
+            return;
+        }
+        
+        libnotify.unInit();
+        LOG.log(Level.FINE, "Libnotify uninit");
     }
 
     @Override
     public Notification notify(String title, Icon icon, String detailsText, ActionListener detailsAction, Priority priority) {
-        if (isLoaded() && libnotify.notify_is_initted()) {
-            Pointer notification = libnotify.notify_notification_new(title, detailsText, null);
-            libnotify.notify_notification_show(notification, null);
+        if (isLoaded() && libnotify.isInitted()) {
+            JLibnotifyNotification notification = libnotify.createNotification(title, detailsText, null);
+            notification.show();
         }
 
         return getDefaultNotificationDisplayer()
