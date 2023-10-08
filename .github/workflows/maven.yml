@@ -12,9 +12,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup Dependencies
-        run: sudo apt-get update && sudo apt-get install -y libnotify4 libnotify-bin
-
       - name: Checkout
         uses: actions/checkout@v4
     
