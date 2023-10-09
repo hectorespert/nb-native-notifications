@@ -19,17 +19,24 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
           cache: maven
-          #server-id: ossrh
-          #settings-path: ${{ github.workspace }}
-          #server-username: OSSRH_USERNAME
-          #server-password: OSSRH_PASSWORD
+          server-id: ossrh
+          settings-path: ${{ github.workspace }}
+          server-username: OSSRH_USERNAME
+          server-password: OSSRH_PASSWORD
 
-      #- name: Import GPG key
-      #  uses: crazy-max/ghaction-import-gpg@v6
-      #  with:
-      #    gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-      #    passphrase: ${{ secrets.PASSPHRASE }}
-      #    fingerprint: FACCE9EDF1EF9AC9935A601BB2735E741E440CE7
+      - name: Import keystore
+        id: keyfile
+        uses: timheuer/base64-to-file@v1.2
+        with:
+          fileName: 'keystore.file'
+          encodedString: ${{ secrets.KEYSTORE }}
+
+      - name: Import GPG key
+        uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          fingerprint: FACCE9EDF1EF9AC9935A601BB2735E741E440CE7
 
       #- name: Build and publish to Apache Maven Central
       #  run: ./mvnw -s $GITHUB_WORKSPACE/settings.xml -B deploy -P release -Drevision=$GITHUB_REF_NAME -Dchangelist= --file pom.xml
