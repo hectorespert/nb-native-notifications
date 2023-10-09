@@ -42,7 +42,8 @@ jobs:
           fingerprint: FACCE9EDF1EF9AC9935A601BB2735E741E440CE7
 
       - name: Build and publish to Apache Maven Central
-        run: ./mvnw -s $GITHUB_WORKSPACE/settings.xml  -Dkeystorepass=${{ secrets.KEYSTORE_PASSWD }} -Dkeystore=${{ steps.keyfile.outputs.filePath }} -Dkeystorealias=plugins -B deploy -P release -Drevision=$GITHUB_REF_NAME -Dchangelist= --file pom.xml
+        # -Dkeystorepass=${{ secrets.KEYSTORE_PASSWD }} -Dkeystore=${{ steps.keyfile.outputs.filePath }} -Dkeystorealias=plugins
+        run: ./mvnw -s $GITHUB_WORKSPACE/settings.xml -B deploy -P release -Drevision=$GITHUB_REF_NAME -Dchangelist= --file pom.xml
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
