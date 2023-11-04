@@ -162,3 +162,4 @@ nbdist/
 # End of https://www.toptal.com/developers/gitignore/api/maven,linux,netbeans,intellij+all,java
 
 .keystore
+.flattened-pom.xml
