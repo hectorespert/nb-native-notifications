@@ -18,10 +18,6 @@ jobs:
           distribution: temurin
           java-version: 11
           cache: 'maven'
-          server-username: OSSRH_USERNAME
-          server-password: OSSRH_PASSWORD
-          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
-          gpg-passphrase: GPG_PASSPHRASE
           
       - name: Import keystore
         id: keyfile
@@ -30,14 +26,15 @@ jobs:
           fileName: 'keystore.file'
           encodedString: ${{ secrets.KEYSTORE }}
 
-#      - name: Import GPG key
-#        uses: crazy-max/ghaction-import-gpg@v6
-#        with:
-#          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-#          passphrase: ${{ secrets.PASSPHRASE }}
-#          fingerprint: FACCE9EDF1EF9AC9935A601BB2735E741E440CE7
+      - name: Import GPG key
+        uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          fingerprint: FACCE9EDF1EF9AC9935A601BB2735E741E440CE7
+          
+      - name: Check GPG keys
+        run: gpg -K
 
-      - name: Build with Maven
-        run: ./mvnw -B -P release verify --file pom.xml
-        env:
-          GPG_PASSPHRASE: ${{ secrets.PASSPHRASE }}
+      #- name: Build with Maven
+      #  run: ./mvnw -B -P release verify --file pom.xml
