@@ -1,11 +1,8 @@
-name: Java CI with Maven
+name: Test Master
 
 on:
   push:
     branches:
-      - master
-  pull_request:
-    branches: 
       - master
 
 jobs:
