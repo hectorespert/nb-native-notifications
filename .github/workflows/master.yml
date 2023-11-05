@@ -43,5 +43,5 @@ jobs:
       - name: Check Maven settings
         run: cat $GITHUB_WORKSPACE/settings.xml
 
-      #- name: Build with Maven
-      #  run: ./mvnw -B -P release verify --file pom.xml
+      - name: Build with Maven
+        run: ./mvnw -B -P release verify --file pom.xml
