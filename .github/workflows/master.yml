@@ -18,6 +18,20 @@ jobs:
           distribution: temurin
           java-version: 11
           cache: 'maven'
+          
+      - name: Import keystore
+        id: keyfile
+        uses: timheuer/base64-to-file@v1.2
+        with:
+          fileName: 'keystore.file'
+          encodedString: ${{ secrets.KEYSTORE }}
+
+      - name: Import GPG key
+        uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          fingerprint: FACCE9EDF1EF9AC9935A601BB2735E741E440CE7
 
       - name: Build with Maven
         run: ./mvnw -B -P release verify --file pom.xml
