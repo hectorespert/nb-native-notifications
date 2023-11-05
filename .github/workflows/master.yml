@@ -18,10 +18,6 @@ jobs:
           distribution: temurin
           java-version: 11
           cache: 'maven'
-          server-id: ossrh
-          settings-path: ${{ github.workspace }}
-          server-username: OSSRH_USERNAME
-          server-password: OSSRH_PASSWORD
           
       - name: Import keystore
         id: keyfile
@@ -36,12 +32,6 @@ jobs:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           fingerprint: FACCE9EDF1EF9AC9935A601BB2735E741E440CE7
-          
-      - name: Check GPG keys
-        run: gpg -K
-        
-      - name: Check Maven settings
-        run: cat $GITHUB_WORKSPACE/settings.xml
 
       - name: Build with Maven
         run: ./mvnw -B -P release verify --file pom.xml
