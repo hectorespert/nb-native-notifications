@@ -34,7 +34,7 @@ jobs:
           fingerprint: FACCE9EDF1EF9AC9935A601BB2735E741E440CE7
           
       - name: List keys
-        run: gpg -K
+        run: export c=$(tty) && echo GPG_TTY && gpg -K
           
       - run:  echo "test" | gpg --clearsign
 
