@@ -1,4 +1,4 @@
-name: Test Master
+name: Check Master
 
 on:
   push:
@@ -19,9 +19,6 @@ jobs:
           java-package: 'jdk'
           java-version: '11'
           check-latest: true
-          server-id: 'ossrh'
-          server-username: OSSRH_USERNAME
-          server-password: OSSRH_PASSWORD
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: SIGN_KEY_PASS
           cache: 'maven'
@@ -36,8 +33,6 @@ jobs:
       - run: gpg --list-secret-keys
 
       - name: Build with Maven
-        run: ./mvnw -B -P release verify --file pom.xml
+        run: ./mvnw -s $GITHUB_WORKSPACE/settings.xml -Dkeystorepass=${{ secrets.KEYSTORE_PASSWD }} -Dkeystore=${{ steps.keyfile.outputs.filePath }} -Dkeystorealias=plugins -B verify -P release --file pom.xml
         env:
           SIGN_KEY_PASS: ${{ secrets.PASSPHRASE }}
-          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}

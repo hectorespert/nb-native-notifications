@@ -1,4 +1,4 @@
-name: Test PR
+name: Check PR
 
 on:
   pull_request:
@@ -17,6 +17,7 @@ jobs:
         with:
           distribution: temurin
           java-version: 11
+          check-latest: true
           cache: 'maven'
 
       - name: Build with Maven

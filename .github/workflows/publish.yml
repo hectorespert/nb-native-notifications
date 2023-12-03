@@ -19,13 +19,16 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
+          distribution: temurin
+          java-package: 'jdk'
           java-version: '11'
-          distribution: 'temurin'
-          cache: maven
-          server-id: ossrh
-          settings-path: ${{ github.workspace }}
+          check-latest: true
+          server-id: 'ossrh'
           server-username: OSSRH_USERNAME
           server-password: OSSRH_PASSWORD
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpg-passphrase: SIGN_KEY_PASS
+          cache: 'maven'
 
       - name: Import keystore
         id: keyfile
@@ -34,15 +37,9 @@ jobs:
           fileName: 'keystore.file'
           encodedString: ${{ secrets.KEYSTORE }}
 
-      - name: Import GPG key
-        uses: crazy-max/ghaction-import-gpg@v6
-        with:
-          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-          passphrase: ${{ secrets.PASSPHRASE }}
-          fingerprint: FACCE9EDF1EF9AC9935A601BB2735E741E440CE7
-
       - name: Build and publish to Apache Maven Central
         run: ./mvnw -s $GITHUB_WORKSPACE/settings.xml -Dkeystorepass=${{ secrets.KEYSTORE_PASSWD }} -Dkeystore=${{ steps.keyfile.outputs.filePath }} -Dkeystorealias=plugins -B deploy -P release -Drevision=$GITHUB_REF_NAME -Dchangelist= --file pom.xml
         env:
+          SIGN_KEY_PASS: ${{ secrets.PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
