@@ -33,10 +33,7 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           fingerprint: FACCE9EDF1EF9AC9935A601BB2735E741E440CE7
           
-      - name: List keys
-        run: export c=$(tty) && echo GPG_TTY && gpg -K
-          
-      - run:  echo "test" | gpg --clearsign
+      - run:  export c=$(tty) && echo GPG_TTY && echo "test" | gpg --clearsign
 
       - name: Build with Maven
         run: ./mvnw -B -P release verify --file pom.xml
