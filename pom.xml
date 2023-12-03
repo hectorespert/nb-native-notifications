@@ -71,7 +71,6 @@
                                 <goal>sign</goal>
                             </goals>
                             <configuration>
-                                <keyname>C298F0F1E9A605B77DF12D5997F95C65611BFDE1</keyname>
                                 <!-- This is required to make sure the plugin does not stop asking for -->
                                 <!-- user input on the passphrase -->
                                 <gpgArguments>
