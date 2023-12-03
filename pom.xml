@@ -72,7 +72,6 @@
                                     <goal>sign</goal>
                                 </goals>
                             </execution>
-                        </executions>
                     </plugin>
                     <plugin>
                         <groupId>org.sonatype.plugins</groupId>
