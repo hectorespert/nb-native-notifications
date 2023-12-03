@@ -33,6 +33,6 @@ jobs:
       - run: gpg --list-secret-keys
 
       - name: Build with Maven
-        run: ./mvnw -s $GITHUB_WORKSPACE/settings.xml -Dkeystorepass=${{ secrets.KEYSTORE_PASSWD }} -Dkeystore=${{ steps.keyfile.outputs.filePath }} -Dkeystorealias=plugins -B verify -P release --file pom.xml
+        run: ./mvnw -Dkeystorepass=${{ secrets.KEYSTORE_PASSWD }} -Dkeystore=${{ steps.keyfile.outputs.filePath }} -Dkeystorealias=plugins -B verify -P release --file pom.xml
         env:
           SIGN_KEY_PASS: ${{ secrets.PASSPHRASE }}
