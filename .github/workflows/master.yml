@@ -29,8 +29,6 @@ jobs:
         with:
           fileName: 'keystore.file'
           encodedString: ${{ secrets.KEYSTORE }}
-          
-      - run: gpg --list-secret-keys
 
       - name: Build with Maven
         run: ./mvnw -Dkeystorepass=${{ secrets.KEYSTORE_PASSWD }} -Dkeystore=${{ steps.keyfile.outputs.filePath }} -Dkeystorealias=plugins -B verify -P release --file pom.xml
