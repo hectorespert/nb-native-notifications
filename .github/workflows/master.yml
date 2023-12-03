@@ -41,4 +41,4 @@ jobs:
         env:
           SIGN_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
           SIGN_KEY_ID: FACCE9EDF1EF9AC9935A601BB2735E741E440CE7
-          SIGN_KEY_PASS: ${{ secrets.PASSPHRASE }}
+          SIGN_KEY_PASS: "${{ secrets.PASSPHRASE }}"
