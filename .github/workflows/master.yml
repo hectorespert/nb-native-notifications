@@ -33,6 +33,9 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           fingerprint: FACCE9EDF1EF9AC9935A601BB2735E741E440CE7
           
+      - name: List keys
+        run: gpg -K
+          
       - run:  echo "test" | gpg --clearsign
 
       - name: Build with Maven
