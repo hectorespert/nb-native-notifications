@@ -61,5 +61,10 @@
             <artifactId>org-openide-util-ui</artifactId>
             <version>${netbens.release}</version>
         </dependency>
+        <dependency>
+            <groupId>org.netbeans.modules</groupId>
+            <artifactId>org-netbeans-modules-notifications</artifactId>
+            <version>${netbens.release}</version>
+        </dependency>
     </dependencies>
 </project>
