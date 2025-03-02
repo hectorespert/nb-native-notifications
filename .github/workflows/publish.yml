@@ -27,7 +27,7 @@ jobs:
           server-username: OSSRH_USERNAME
           server-password: OSSRH_PASSWORD
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
-          gpg-passphrase: SIGN_KEY_PASS
+          gpg-passphrase: MAVEN_GPG_PASSPHRASE
           cache: 'maven'
 
       - name: Import keystore
@@ -40,6 +40,6 @@ jobs:
       - name: Build and publish to Apache Maven Central
         run: ./mvnw -Dkeystorepass=${{ secrets.KEYSTORE_PASSWD }} -Dkeystore=${{ steps.keyfile.outputs.filePath }} -Dkeystorealias=plugins -B deploy -P release -Drevision=$GITHUB_REF_NAME -Dchangelist= --file pom.xml
         env:
-          SIGN_KEY_PASS: ${{ secrets.PASSPHRASE }}
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
