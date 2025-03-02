@@ -23,6 +23,8 @@ jobs:
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
           cache: 'maven'
           
+      - run: gpg --list-secret-keys --keyid-format=long
+          
       - name: Import keystore
         id: keyfile
         uses: timheuer/base64-to-file@v1.2
