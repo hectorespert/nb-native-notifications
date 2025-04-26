@@ -19,12 +19,10 @@ jobs:
           java-package: 'jdk'
           java-version: '11'
           check-latest: true
-          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
           cache: 'maven'
-          
-      - run: gpg --list-secret-keys --keyid-format=long
-          
+
       - name: Import keystore
         id: keyfile
         uses: timheuer/base64-to-file@v1.2
@@ -35,4 +33,4 @@ jobs:
       - name: Build with Maven
         run: ./mvnw -Dkeystorepass=${{ secrets.KEYSTORE_PASSWD }} -Dkeystore=${{ steps.keyfile.outputs.filePath }} -Dkeystorealias=plugins -B verify -P release --file pom.xml
         env:
-          MAVEN_GPG_PASSPHRASE: ${{ secrets.PASSPHRASE }}
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
