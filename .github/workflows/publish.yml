@@ -23,7 +23,7 @@ jobs:
           java-package: 'jdk'
           java-version: '11'
           check-latest: true
-          server-id: 'ossrh'
+          server-id: central
           server-username: OSSRH_USERNAME
           server-password: OSSRH_PASSWORD
           gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
