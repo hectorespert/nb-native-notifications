@@ -21,7 +21,7 @@ jobs:
         with:
           distribution: temurin
           java-package: 'jdk'
-          java-version: '11'
+          java-version: 21
           check-latest: true
           server-id: central
           server-username: OSSRH_USERNAME
