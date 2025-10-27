@@ -31,6 +31,6 @@ jobs:
           encodedString: ${{ secrets.KEYSTORE }}
 
       - name: Build with Maven
-        run: ./mvnw -Dkeystorepass=${{ secrets.KEYSTORE_PASSWD }} -Dkeystore=${{ steps.keyfile.outputs.filePath }} -Dkeystorealias=plugins -B verify -P release --file pom.xml
+        run: ./mvnw -Dkeystorepass=${{ secrets.KEYSTORE_PASSWD }} -Dkeystore=${{ steps.keyfile.outputs.filePath }} -Dkeystorealias=plugins -B verify -P release
         env:
           MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}

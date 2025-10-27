@@ -38,7 +38,7 @@ jobs:
           encodedString: ${{ secrets.KEYSTORE }}
 
       - name: Build and publish to Apache Maven Central
-        run: ./mvnw -Dkeystorepass=${{ secrets.KEYSTORE_PASSWD }} -Dkeystore=${{ steps.keyfile.outputs.filePath }} -Dkeystorealias=plugins -B deploy -P release -Drevision=$GITHUB_REF_NAME -Dchangelist= --file pom.xml
+        run: ./mvnw -Dkeystorepass=${{ secrets.KEYSTORE_PASSWD }} -Dkeystore=${{ steps.keyfile.outputs.filePath }} -Dkeystorealias=plugins -B deploy -P release -Drevision=$GITHUB_REF_NAME -Dchangelist=
         env:
           MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
