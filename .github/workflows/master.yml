@@ -17,7 +17,7 @@ jobs:
         with:
           distribution: temurin
           java-package: 'jdk'
-          java-version: '11'
+          java-version: 21
           check-latest: true
           gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
