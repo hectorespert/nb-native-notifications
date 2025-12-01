@@ -37,7 +37,7 @@
         <changelist>-SNAPSHOT</changelist>
         <sha1/>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <netbens.release>RELEASE270</netbens.release>
+        <netbens.release>RELEASE280</netbens.release>
     </properties>
     <profiles>
         <profile>
