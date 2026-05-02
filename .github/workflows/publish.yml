@@ -32,7 +32,7 @@ jobs:
 
       - name: Import keystore
         id: keyfile
-        uses: timheuer/base64-to-file@v1.2
+        uses: timheuer/base64-to-file@v2.0
         with:
           fileName: 'keystore.file'
           encodedString: ${{ secrets.KEYSTORE }}
