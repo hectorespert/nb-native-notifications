@@ -12,8 +12,10 @@ two-module Maven build producing Apache NetBeans plugins (NBM modules):
 
 ## Build commands
 
-Always use the Maven wrapper (`./mvnw`). Builds run on JDK 21 in CI but compile to Java 11 bytecode
-(`source`/`target` 11 in the root pom).
+Always use the Maven wrapper (`./mvnw`). Builds run on JDK 21 in CI and compile to Java 21 bytecode
+(`<release>21</release>` in the root pom). JDK 21 is the floor, not a preference: the
+`org.netbeans.*` artifacts for RELEASE310 ship Java 21 class files, so anything lower fails to
+compile against them.
 
 ```bash
 ./mvnw clean verify            # full build, what CI runs on PRs
